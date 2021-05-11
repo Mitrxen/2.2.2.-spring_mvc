@@ -14,20 +14,15 @@ public class CarServiceImpl implements CarService{
 				carList.add(new Car());
 			}
 		}
+	}
+	
+	@Override
+	public List<Car> getCars(String carNumber){
+		if(carNumber == null || Integer.parseInt(carNumber) < 0 || Integer.parseInt(carNumber) > carList.size())
+			return carList;
+		else
+			return carList.subList(0, Integer.parseInt(carNumber));
 		
 	}
-	
-	@Override
-	public List<Car> getCars(int carNumber){
-		if(carNumber < carList.size() && carNumber >= 0)
-			return carList.subList(0, carNumber);
-		return getAllCars();
-	}
-
-	@Override
-	public List<Car> getAllCars() {
-		return carList;
-	}
-	
 	
 }

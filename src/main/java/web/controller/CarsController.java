@@ -12,14 +12,11 @@ import web.service.CarServiceImpl;
 
 @Controller
 public class CarsController {
-	@GetMapping(value = "/cars.html")
+	@GetMapping(value = "/cars")
 	public String printCars(ModelMap model, HttpServletRequest request) {
+		
 		CarService carService = new CarServiceImpl();
-		try {
-			model.addAttribute("cars", carService.getCars(Integer.parseInt(request.getParameter("count"))));
-		}catch(NumberFormatException ex) {
-			model.addAttribute("cars", carService.getAllCars());
-		}
+		model.addAttribute("cars", carService.getCars(request.getParameter("count")));
 		return "cars";
 	}
 }
